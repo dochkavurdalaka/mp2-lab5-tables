@@ -32,62 +32,63 @@ int main(){
             do{
                 try {
                     flag = 0;
-                std::cout << "1.input first polinom\n";
-                std::cout << "2.get first polinom from unordered table\n";
-                std::cout << "3.get first polinom from ordered table\n";
-                std::cout << "4.get first polinom from hash table\n";
-                std::cout << ">>";
-                
-                int j; std::cin >> j;
-                switch (j) {
-                case 1: {
-                    std::cout << "input polinom: ";
-                    string a = "";
-                    std::cin.clear();
-                    std::cin.ignore(std::cin.rdbuf()->in_avail());
-                    getline(std::cin, a);
-                    pol1 = Parser(a).getPolinom();
-                }
-                      break;
-                case 2: {
-                    std::cout << "input key\n";
-                    int key;
-                    std::cin >> key;
-                    auto s = unorderedtable.find(key);
-                    if (s != 0)
-                        pol1 = s->getValue();
-                    else {
-                        throw std::invalid_argument("error, no element with this key in the table\n");
-                    }
+                    std::cout << "1.input first polinom\n";
+                    std::cout << "2.get first polinom from unordered table\n";
+                    std::cout << "3.get first polinom from ordered table\n";
+                    std::cout << "4.get first polinom from hash table\n";
+                    std::cout << ">>";
 
-                }
-                      break;
-                case 3: {
-                    std::cout << "input key\n";
-                    int key;
-                    std::cin >> key;
-                    auto s = orderedtable.find(key);
-                    if (s != 0)
-                        pol1 = s->getValue();
-                    else {
-                        throw std::invalid_argument("error, no element with this key in the table\n");
+                    int j; std::cin >> j;
+                    switch (j) {
+                    case 1: {
+                        std::cout << "input polinom: ";
+                        string a = "";
+                        std::cin.clear();
+                        std::cin.ignore(std::cin.rdbuf()->in_avail());
+                        getline(std::cin, a);
+                        pol1 = Parser(a).getPolinom();
+                    }
+                          break;
+                    case 2: {
+                        std::cout << "input key\n";
+                        int key;
+                        std::cin >> key;
+                        auto s = unorderedtable.find(key);
+                        if (s != 0)
+                            pol1 = s->getValue();
+                        else {
+                            throw std::invalid_argument("error, no element with this key in the table\n");
+                        }
+
+                    }
+                          break;
+                    case 3: {
+                        std::cout << "input key\n";
+                        int key;
+                        std::cin >> key;
+                        auto s = orderedtable.find(key);
+                        if (s != 0)
+                            pol1 = s->getValue();
+                        else {
+                            throw std::invalid_argument("error, no element with this key in the table\n");
+                        }
+                    }
+                          break;
+                    case 4: {
+                        std::cout << "input key\n";
+                        int key;
+                        std::cin >> key;
+                        auto s = hashtable.find(key);
+                        if (s != 0)
+                            pol1 = s->getValue();
+                        else {
+                            throw std::invalid_argument("error, no element with this key in the table\n");
+                        }
+                    }
+                          break;
                     }
                 }
-                      break;
-                case 4: {
-                    std::cout << "input key\n";
-                    int key;
-                    std::cin >> key;
-                    auto s = hashtable.find(key);
-                    if (s != 0)
-                        pol1 = s->getValue();
-                    else {
-                        throw std::invalid_argument("error, no element with this key in the table\n");
-                    }
-                }
-                      break;
-                }
-            }
+                    
                 catch (std::invalid_argument err) {
                     flag = 1;
                     std::cout << err.what() << "\n";
@@ -160,6 +161,8 @@ int main(){
                 }
             } while (flag == 1);
 
+            Polinom result;
+
             int d;
             std::cout << "1.multiply polinoms\n";
             std::cout << "2.add polinoms\n";
@@ -169,15 +172,82 @@ int main(){
             while (d != 4) {
                 switch (d) {
                 case 1:
-                    std::cout << pol1 * pol2 << endl;
+                    result = pol1 * pol2;
+                    std::cout << result << endl;
                     break;
                 case 2:
-                    std::cout << pol1 + pol2 << endl;
+                    result = pol1 + pol2;
+                    std::cout << result << endl;
                     break;
                 case 3:
-                    std::cout << pol1 - pol2 << endl;
+                    result = pol1 - pol2;
+                    std::cout << result << endl;
                     break;
                 }
+
+                
+
+
+                int flag = 0;
+                do {
+                    try {
+                        flag = 0;
+                        int w;
+                        std::cout << "1.add polinom to unordered table\n";
+                        std::cout << "2.add polinom to ordered table\n";
+                        std::cout << "3.add polinom to hash table\n";
+                        std::cout << "4.do nothing\n";
+                        std::cout << ">>"; std::cin >> w;
+                        while (w != 4) {
+
+
+                           
+                            switch (w) {
+                            case 1: {
+                                int key;
+                                std::cout << "input key: ";
+                                std::cin >> key;
+                                unorderedtable.insert(key, result);
+                            }
+                                  break;
+                            case 2: {
+                                int key;
+                                std::cout << "input key: ";
+                                std::cin >> key;
+                                orderedtable.insert(key, result);
+                            }
+                                  break;
+                            case 3: {
+                                int key;
+                                std::cout << "input key: ";
+                                std::cin >> key;
+                                hashtable.insert(key, result);
+                            }
+                                  break;
+                            }
+
+
+                            std::cout << "1.add polinom to unordered table\n";
+                            std::cout << "2.add polinom to ordered table\n";
+                            std::cout << "3.add polinom to hash table\n";
+                            std::cout << "4.do nothing\n";
+                            std::cout << ">>"; std::cin >> w;
+
+
+                        }
+                    }
+                        catch (std::invalid_argument err) {
+                            flag = 1;
+                            std::cout << "error: " << err.what() << "\n";
+                        }
+
+                    } while (flag == 1);
+                    
+                
+              
+                        
+
+
 
 
 
