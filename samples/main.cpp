@@ -16,14 +16,10 @@ int main(){
     int n;
     std::cout << "1.work with polinoms\n";
     std::cout << "2.add polinom to unordered table\n";
-    std::cout << "3.add polinom to ordered table\n";
-    std::cout << "4.add polinom to hash table\n";
-    std::cout << "5.delete polinom from unordered table\n";
-    std::cout << "6.delete polinom from ordered table\n";
-    std::cout << "7.delete polinom from hash table\n";
-    std::cout << "8.exit\n";
+    std::cout << "3.delete polinom from unordered table\n";
+    std::cout << "4.exit\n";
     std::cout << ">>"; std::cin >> n;
-    while (n != 8) {
+    while (n != 4) {
 
         switch (n) {
         case 1: {
@@ -193,48 +189,18 @@ int main(){
                     try {
                         flag = 0;
                         int w;
-                        std::cout << "1.add polinom to unordered table\n";
-                        std::cout << "2.add polinom to ordered table\n";
-                        std::cout << "3.add polinom to hash table\n";
-                        std::cout << "4.do nothing\n";
+                        std::cout << "1.add polinom to table\n";
+                        std::cout << "2.do nothing\n";
                         std::cout << ">>"; std::cin >> w;
-                        while (w != 4) {
-
-
-                           
-                            switch (w) {
-                            case 1: {
-                                int key;
-                                std::cout << "input key: ";
-                                std::cin >> key;
-                                unorderedtable.insert(key, result);
-                            }
-                                  break;
-                            case 2: {
-                                int key;
-                                std::cout << "input key: ";
-                                std::cin >> key;
-                                orderedtable.insert(key, result);
-                            }
-                                  break;
-                            case 3: {
-                                int key;
-                                std::cout << "input key: ";
-                                std::cin >> key;
-                                hashtable.insert(key, result);
-                            }
-                                  break;
-                            }
-
-
-                            std::cout << "1.add polinom to unordered table\n";
-                            std::cout << "2.add polinom to ordered table\n";
-                            std::cout << "3.add polinom to hash table\n";
-                            std::cout << "4.do nothing\n";
-                            std::cout << ">>"; std::cin >> w;
-
-
+                        if (w == 1) {
+                            int key;
+                            std::cout << "input key: ";
+                            std::cin >> key;
+                            unorderedtable.insert(key, result);
+                            orderedtable.insert(key, result);
+                            hashtable.insert(key, result);
                         }
+
                     }
                         catch (std::invalid_argument err) {
                             flag = 1;
@@ -278,6 +244,8 @@ int main(){
             Polinom pol1 = Parser(a).getPolinom();
             try {
                 unorderedtable.insert(key, pol1);
+                orderedtable.insert(key, pol1);
+                hashtable.insert(key, pol1);
             }
             catch (std::invalid_argument err) {
                 std::cout << "error: " << err.what() << "\n";
@@ -288,101 +256,23 @@ int main(){
             int key = 0;
             std::cout << "input key\n";
             std::cin >> key;
-
-            std::cout << "input polinom\n";
-            string a = "";
-            std::cin.clear();
-            std::cin.ignore(std::cin.rdbuf()->in_avail());
-            getline(std::cin, a);
-
-
-
-            Polinom pol1 = Parser(a).getPolinom();
-
-            try {
-                orderedtable.insert(key, pol1);
-            }
-            catch (std::invalid_argument err) {
-                std::cout << "error: " << err.what() << "\n";
-            }
-        }
-            break;
-        case 4: {
-            int key = 0;
-            std::cout << "input key\n";
-            std::cin >> key;
-
-            std::cout << "input polinom\n";
-            string a = "";
-            std::cin.clear();
-            std::cin.ignore(std::cin.rdbuf()->in_avail());
-            getline(std::cin, a);
-
-
-
-            Polinom pol1 = Parser(a).getPolinom();
-            try {
-                hashtable.insert(key, pol1);
-            }
-            catch (std::invalid_argument err) {
-                std::cout << "error: " << err.what() << "\n";
-            }
-        }
-            break;
-        case 5: {
-            int key = 0;
-            std::cout << "input key\n";
-            std::cin >> key;
             try {
                 unorderedtable.deleteRecord(key);
-            }
-            catch (std::invalid_argument err) {
-                std::cout << "error: " << err.what() << "\n";
-            }
-        }
-              break;
-
-        case 6: {
-
-            int key = 0;
-            std::cout << "input key\n";
-            std::cin >> key;
-
-            try {
                 orderedtable.deleteRecord(key);
-            }
-            catch (std::invalid_argument err) {
-                std::cout << "error: " << err.what() << "\n";
-            }
-        }
-            break;
-        case 7: {
-
-            int key = 0;
-            std::cout << "input key\n";
-            std::cin >> key;
-
-            try {
                 hashtable.deleteRecord(key);
+                std::cout << "polinom deleted\n";
             }
             catch (std::invalid_argument err) {
                 std::cout << "error: " << err.what() << "\n";
             }
         }
               break;
-
-
-
 
         }
         std::cout << "1.work with polinoms\n";
         std::cout << "2.add polinom to unordered table\n";
-        std::cout << "3.add polinom to ordered table\n";
-        std::cout << "4.add polinom to hash table\n";
-        std::cout << "5.delete polinom from unordered table\n";
-        std::cout << "6.delete polinom from ordered table\n";
-        std::cout << "7.delete polinom from hash table\n";
-        std::cout << "8.exit\n";
+        std::cout << "3.delete polinom from unordered table\n";
+        std::cout << "4.exit\n";
         std::cout << ">>"; std::cin >> n;
         
     }
