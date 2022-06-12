@@ -15,8 +15,8 @@ int main(){
 
     int n;
     std::cout << "1.work with polinoms\n";
-    std::cout << "2.add polinom to unordered table\n";
-    std::cout << "3.delete polinom from unordered table\n";
+    std::cout << "2.add polinom to table\n";
+    std::cout << "3.delete polinom from table\n";
     std::cout << "4.exit\n";
     std::cout << ">>"; std::cin >> n;
     while (n != 4) {
@@ -270,8 +270,8 @@ int main(){
 
         }
         std::cout << "1.work with polinoms\n";
-        std::cout << "2.add polinom to unordered table\n";
-        std::cout << "3.delete polinom from unordered table\n";
+        std::cout << "2.add polinom to table\n";
+        std::cout << "3.delete polinom from table\n";
         std::cout << "4.exit\n";
         std::cout << ">>"; std::cin >> n;
         
